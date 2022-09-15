@@ -28,6 +28,9 @@ namespace Ensek.TechnicalTest.Db.Context
                 .HasKey(x => x.Id);
 
             modelBuilder.Entity<MeterReading>()
+                .HasAlternateKey(x => new { x.AccountId, x.DateTime, x.Value });
+
+            modelBuilder.Entity<MeterReading>()
                 .HasOne(x => x.Account);
         }
 
