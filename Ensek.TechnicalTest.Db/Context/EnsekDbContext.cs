@@ -1,7 +1,6 @@
 ﻿using Ensek.TechnicalTest.Db.Models;
 using Ensek.TechnicalTest.Db.Seeding;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Ensek.TechnicalTest.Db.Context
 {
@@ -28,7 +27,7 @@ namespace Ensek.TechnicalTest.Db.Context
                 .HasKey(x => x.Id);
 
             modelBuilder.Entity<MeterReading>()
-                .HasAlternateKey(x => new { x.AccountId, x.DateTime, x.Value });
+                .HasAlternateKey(x => new { x.AccountId, x.DateTime });
 
             modelBuilder.Entity<MeterReading>()
                 .HasOne(x => x.Account);

@@ -224,7 +224,7 @@ namespace Ensek.TechnicalTest.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("AccountId", "DateTime", "Value");
+                    b.HasAlternateKey("AccountId", "DateTime");
 
                     b.ToTable("MeterReadings");
                 });
