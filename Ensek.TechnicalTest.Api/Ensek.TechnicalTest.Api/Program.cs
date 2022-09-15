@@ -1,3 +1,7 @@
+using Ensek.TechnicalTest.Api.Extensions;
+using Ensek.TechnicalTest.Db.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace Ensek.TechnicalTest.Api
 {
     public class Program
@@ -9,7 +13,9 @@ namespace Ensek.TechnicalTest.Api
             // Add services to the container.
             builder.Services.AddControllers();
 
-            builder.Services.AddSwaggerGen();
+            builder.Services
+                .AddSwaggerGen()
+                .AddEnsekDbSqlServer(builder.Configuration);
 
             var app = builder.Build();
 
