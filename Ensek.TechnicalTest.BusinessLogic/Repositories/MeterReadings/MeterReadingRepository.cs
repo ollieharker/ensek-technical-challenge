@@ -1,4 +1,5 @@
-﻿using Ensek.TechnicalTest.Db.Context;
+﻿using Ensek.TechnicalTest.BusinessLogic.Validation;
+using Ensek.TechnicalTest.Db.Context;
 using Ensek.TechnicalTest.Db.Models;
 using FluentValidation;
 
@@ -9,7 +10,7 @@ namespace Ensek.TechnicalTest.Data.Repositories.MeterReadings
 		private readonly EnsekDbContext ensekDbContext;
 		private readonly IValidator<MeterReading> validator;
 
-		public MeterReadingRepository(EnsekDbContext ensekDbContext, IValidator<MeterReading> validator)
+		public MeterReadingRepository(EnsekDbContext ensekDbContext, MeterReadingValidator validator)
 		{
 			this.ensekDbContext = ensekDbContext;
 			this.validator = validator;
@@ -19,8 +20,10 @@ namespace Ensek.TechnicalTest.Data.Repositories.MeterReadings
 		{
 			this.validator.ValidateAndThrow(meterReading);
 
-			this.ensekDbContext.Add(meterReading);
+			this.ensekDbContext.MeterReadings.Add(meterReading);
 			this.ensekDbContext.SaveChanges();
 		}
+
+		public IQueryable<MeterReading> GetAll() => this.ensekDbContext.MeterReadings.AsQueryable();
 	}
 }

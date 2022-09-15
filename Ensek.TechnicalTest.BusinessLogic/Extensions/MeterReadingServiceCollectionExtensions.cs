@@ -3,7 +3,6 @@ using Ensek.TechnicalTest.Data.Repositories;
 using Ensek.TechnicalTest.Data.Repositories.MeterReadings;
 using Ensek.TechnicalTest.Data.Services.Readings;
 using Ensek.TechnicalTest.Db.Models;
-using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Ensek.TechnicalTest.Data.Extensions
@@ -14,7 +13,8 @@ namespace Ensek.TechnicalTest.Data.Extensions
 		{
 			return services
 				.AddScoped<IRepository<MeterReading>, MeterReadingRepository>()
-				.AddScoped<IValidator<MeterReading>, MeterReadingValidator>()
+				.AddScoped<IRepository<Account>, AccountRepository>()
+				.AddScoped<MeterReadingValidator>()
 				.AddScoped<IMeterReadingService, MeterReadingService>();
 		}
 	}

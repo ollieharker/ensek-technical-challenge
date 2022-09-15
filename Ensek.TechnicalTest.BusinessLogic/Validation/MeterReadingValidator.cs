@@ -8,7 +8,7 @@ namespace Ensek.TechnicalTest.BusinessLogic.Validation
         const uint longestReadingValue = 99999;
         public MeterReadingValidator()
         {
-            RuleFor(model => model.Value <= longestReadingValue);
+            RuleFor(model => model.Value).LessThanOrEqualTo(longestReadingValue);
         }
     }
 }
