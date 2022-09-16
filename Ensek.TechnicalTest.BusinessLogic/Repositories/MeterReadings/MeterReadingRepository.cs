@@ -20,7 +20,7 @@ namespace Ensek.TechnicalTest.Data.Repositories.MeterReadings
 		{
 			this.validator.ValidateAndThrow(meterReading);
 
-			this.ensekDbContext.MeterReadings.Add(meterReading);
+			this.ensekDbContext.Add(meterReading);
 			this.ensekDbContext.SaveChanges();
 		}
 

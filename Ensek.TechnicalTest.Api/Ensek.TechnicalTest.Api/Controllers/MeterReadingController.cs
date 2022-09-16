@@ -1,11 +1,5 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using Ensek.TechnicalTest.Api.Dto;
+﻿using Ensek.TechnicalTest.Api.Dto;
 using Ensek.TechnicalTest.Api.Services.MeterReads;
-using Ensek.TechnicalTest.BusinessLogic.Dto.MeterReading;
-using Ensek.TechnicalTest.BusinessLogic.Validation;
-using Ensek.TechnicalTest.Db.Context;
-using Ensek.TechnicalTest.Db.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
@@ -16,7 +10,7 @@ namespace Ensek.TechnicalTest.Api.Controllers
     {
         private readonly IMeterReadCsvUploadService meterReadUploadService;
 
-        public MeterReadingController(MeterReadCsvUploadService meterReadUploadService)
+        public MeterReadingController(IMeterReadCsvUploadService meterReadUploadService)
         {
             this.meterReadUploadService = meterReadUploadService;
         }

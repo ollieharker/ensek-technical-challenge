@@ -26,10 +26,11 @@ namespace Ensek.TechnicalTest.Db.Migrations
                 oldType: "int",
                 oldNullable: true);
 
-            migrationBuilder.AddUniqueConstraint(
-                name: "AK_MeterReadings_AccountId_DateTime",
+            migrationBuilder.CreateIndex(
+                name: "IX_MeterReadings_AccountId_Value",
                 table: "MeterReadings",
-                columns: new[] { "AccountId", "DateTime" });
+                columns: new[] { "AccountId", "Value" },
+                unique: true);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_MeterReadings_Accounts_AccountId",
@@ -46,8 +47,8 @@ namespace Ensek.TechnicalTest.Db.Migrations
                 name: "FK_MeterReadings_Accounts_AccountId",
                 table: "MeterReadings");
 
-            migrationBuilder.DropUniqueConstraint(
-                name: "AK_MeterReadings_AccountId_DateTime",
+            migrationBuilder.DropIndex(
+                name: "IX_MeterReadings_AccountId_Value",
                 table: "MeterReadings");
 
             migrationBuilder.AlterColumn<int>(

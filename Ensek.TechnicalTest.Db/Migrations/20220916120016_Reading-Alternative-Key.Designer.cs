@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ensek.TechnicalTest.Db.Migrations
 {
     [DbContext(typeof(EnsekDbContext))]
-    [Migration("20220915185951_Reading-Alternative-Key")]
+    [Migration("20220916120016_Reading-Alternative-Key")]
     partial class ReadingAlternativeKey
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,7 +226,8 @@ namespace Ensek.TechnicalTest.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("AccountId", "DateTime");
+                    b.HasIndex("AccountId", "Value")
+                        .IsUnique();
 
                     b.ToTable("MeterReadings");
                 });

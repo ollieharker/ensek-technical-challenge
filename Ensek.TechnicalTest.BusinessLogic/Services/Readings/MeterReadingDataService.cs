@@ -1,5 +1,6 @@
 ﻿using Ensek.TechnicalTest.Data.Repositories;
 using Ensek.TechnicalTest.Db.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ensek.TechnicalTest.Data.Services.Readings
 {
@@ -17,16 +18,16 @@ namespace Ensek.TechnicalTest.Data.Services.Readings
 		public AddMeterReadingResult AddMeterReadings(IEnumerable<MeterReading> meterReadings)
 		{
 			var addMeterReadingResult = new AddMeterReadingResult();
-			var readingsWithAccounts = this.GetReadingsWithExistingAccounts(meterReadings, addMeterReadingResult);
+			var uniqueReadingsWithAccounts = this.GetUniqueReadingsWithExistingAccounts(meterReadings, addMeterReadingResult);
 
-			foreach (var reading in readingsWithAccounts)
+			foreach (var reading in uniqueReadingsWithAccounts)
 			{
 				try
 				{
 					this.meterReadingRepository.Add(reading);
 					addMeterReadingResult.AddedReadingCount++;
 				}
-				catch
+				catch(Exception ex)
 				{
 					addMeterReadingResult.RejectedReadingCount++;
 				}
@@ -35,15 +36,21 @@ namespace Ensek.TechnicalTest.Data.Services.Readings
 			return addMeterReadingResult;
 		}
 
-		private IEnumerable<MeterReading> GetReadingsWithExistingAccounts(IEnumerable<MeterReading> meterReadings, AddMeterReadingResult addMeterReadingResult)
+		private IEnumerable<MeterReading> GetUniqueReadingsWithExistingAccounts(IEnumerable<MeterReading> meterReadings, AddMeterReadingResult addMeterReadingResult)
 		{
-			var accounts = this.accountRepository.GetAll();
-			var readingsWithAccounts = meterReadings
-				.Join(accounts, reading => reading.AccountId, a => a.Id, (reading, account) => reading);
+			var accounts = this.accountRepository.GetAll()
+				.Include(m => m.Readings);
 
-			addMeterReadingResult.RejectedReadingCount += meterReadings.Count() - readingsWithAccounts.Count();
+			var readingsWithAccounts = meterReadings.Join(accounts, reading => reading.AccountId, a => a.Id, (reading, account) => (reading, account));
+			var readingsExcludingDuplicateValues = readingsWithAccounts
+				.Where(m => !m.account.Readings.Any(reading => reading.Value == m.reading.Value))
+				.Select(m => m.reading)
+				.DistinctBy(m =>  new{ m.AccountId, m.Value})
+				.ToList();
 
-			return readingsWithAccounts;
+			addMeterReadingResult.RejectedReadingCount += meterReadings.Count() - readingsExcludingDuplicateValues.Count();
+
+			return readingsExcludingDuplicateValues;
 		}
 	}
 }

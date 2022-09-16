@@ -38,7 +38,7 @@ namespace Ensek.TechnicalTest.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts");
+                    b.ToTable("Accounts", (string)null);
 
                     b.HasData(
                         new
@@ -224,9 +224,10 @@ namespace Ensek.TechnicalTest.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("AccountId", "DateTime");
+                    b.HasIndex("AccountId", "Value")
+                        .IsUnique();
 
-                    b.ToTable("MeterReadings");
+                    b.ToTable("MeterReadings", (string)null);
                 });
 
             modelBuilder.Entity("Ensek.TechnicalTest.Db.Models.MeterReading", b =>

@@ -24,7 +24,8 @@ namespace Ensek.TechnicalTest.Api.Services.MeterReads
 
 			try
 			{
-				return this.ParseAndUpload(stream);
+				var result = this.ParseAndUpload(stream);
+				return result;
 			}
 			catch (MeterReadParsingException ex)
 			{
