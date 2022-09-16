@@ -1,5 +1,4 @@
-﻿using Ensek.TechnicalTest.BusinessLogic.Dto.MeterReading;
-using Ensek.TechnicalTest.Db.Models;
+﻿using Ensek.TechnicalTest.Db.Models;
 
 namespace Ensek.TechnicalTest.Api.Services.MeterReads
 {
@@ -9,12 +8,7 @@ namespace Ensek.TechnicalTest.Api.Services.MeterReads
 		{
 			this.NewMeterReadings = meterReadingsParsed;
 			this.ParseFailedCount = failedCount;
-			this.ParseSucceededCount = meterReadingsParsed.Count();
 		}
-
-		public int TotalRows => this.ParseSucceededCount + this.ParseFailedCount;
-
-		public int ParseSucceededCount { get; init; }
 
 		public int ParseFailedCount { get; init; }
 

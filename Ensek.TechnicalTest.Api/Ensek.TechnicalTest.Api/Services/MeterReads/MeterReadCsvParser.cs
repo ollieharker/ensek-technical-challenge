@@ -3,6 +3,7 @@ using CsvHelper;
 using Ensek.TechnicalTest.BusinessLogic.Dto.MeterReading;
 using System.Globalization;
 using Ensek.TechnicalTest.Api.Extensions;
+using Ensek.TechnicalTest.Api.Exceptions;
 
 namespace Ensek.TechnicalTest.Api.Services.MeterReads
 {
@@ -10,9 +11,20 @@ namespace Ensek.TechnicalTest.Api.Services.MeterReads
 	{
 		public MeterReadParsingResult ParseCsvToMeterReadings(Stream stream)
 		{
+			if (stream == null)
+			{
+				throw new ArgumentNullException(nameof(stream));
+			}
+
+			return this.Parse(stream);
+		}
+
+		private MeterReadParsingResult Parse(Stream stream)
+		{
 			int parseFailedCount = default;
 			var csvConfiguration = new CsvConfiguration(CultureInfo.GetCultureInfo("en-GB"))
 			{
+				// When invalid CSV records are found, continue and increment the parsed failure count.
 				BadDataFound = (_) => { parseFailedCount++; },
 				ReadingExceptionOccurred = (_) => { parseFailedCount++; return false; },
 			};
@@ -29,7 +41,14 @@ namespace Ensek.TechnicalTest.Api.Services.MeterReads
 			{
 				csvReader.Context.RegisterClassMap<MeterReadingCsvMap>();
 
-				return csvReader.GetRecords<NewMeterReadingDto>().ToList();
+				try
+				{
+					return csvReader.GetRecords<NewMeterReadingDto>().ToList();
+				}
+				catch (CsvHelperException ex)
+				{
+					throw new MeterReadParsingException("An error occured parsing CSV records.", ex);
+				}
 			}
 		}
 	}
