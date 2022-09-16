@@ -8,19 +8,16 @@ using Ensek.TechnicalTest.Db.Context;
 using Ensek.TechnicalTest.Db.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 
 namespace Ensek.TechnicalTest.Api.Controllers
 {
     [ApiController]
-    public class MeterReadingController
+    public class MeterReadingController : Controller
     {
-        private readonly EnsekDbContext ensekDbContext;
         private readonly IMeterReadCsvUploadService meterReadUploadService;
 
-        public MeterReadingController(EnsekDbContext ensekDbContext, IMeterReadCsvUploadService meterReadUploadService)
+        public MeterReadingController(MeterReadCsvUploadService meterReadUploadService)
         {
-            this.ensekDbContext = ensekDbContext;
             this.meterReadUploadService = meterReadUploadService;
         }
 
@@ -28,7 +25,7 @@ namespace Ensek.TechnicalTest.Api.Controllers
         [Route("/meter-reading-uploads")]
         public MeterReadingUploadResult UploadMeterReads([Required]IFormFile csvFile)
         {
-            return this.meterReadUploadService.UploadMeterReadsFromStream(csvFile.OpenReadStream());
+			return this.meterReadUploadService.UploadMeterReadsFromStream(csvFile.OpenReadStream());
 		}
 	}
 }

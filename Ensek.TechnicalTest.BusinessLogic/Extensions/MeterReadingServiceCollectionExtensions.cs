@@ -15,7 +15,7 @@ namespace Ensek.TechnicalTest.Data.Extensions
 				.AddScoped<IRepository<MeterReading>, MeterReadingRepository>()
 				.AddScoped<IRepository<Account>, AccountRepository>()
 				.AddScoped<MeterReadingValidator>()
-				.AddScoped<IMeterReadingService, MeterReadingService>();
+				.AddScoped<IMeterReadingDataService, MeterReadingDataService>();
 		}
 	}
 }
