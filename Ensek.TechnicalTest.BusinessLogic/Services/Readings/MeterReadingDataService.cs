@@ -3,12 +3,12 @@ using Ensek.TechnicalTest.Db.Models;
 
 namespace Ensek.TechnicalTest.Data.Services.Readings
 {
-	public class MeterReadingService : IMeterReadingService
+	public class MeterReadingDataService : IMeterReadingDataService
 	{
 		private readonly IRepository<MeterReading> meterReadingRepository;
 		private readonly IRepository<Account> accountRepository;
 
-		public MeterReadingService(IRepository<MeterReading> meterReadingRepository, IRepository<Account> accountRepository)
+		public MeterReadingDataService(IRepository<MeterReading> meterReadingRepository, IRepository<Account> accountRepository)
 		{
 			this.meterReadingRepository = meterReadingRepository;
 			this.accountRepository = accountRepository;
@@ -17,7 +17,7 @@ namespace Ensek.TechnicalTest.Data.Services.Readings
 		public AddMeterReadingResult AddMeterReadings(IEnumerable<MeterReading> meterReadings)
 		{
 			var addMeterReadingResult = new AddMeterReadingResult();
-			var readingsWithAccounts = this.GetReadingsWithAccounts(meterReadings, addMeterReadingResult);
+			var readingsWithAccounts = this.GetReadingsWithExistingAccounts(meterReadings, addMeterReadingResult);
 
 			foreach (var reading in readingsWithAccounts)
 			{
@@ -35,7 +35,7 @@ namespace Ensek.TechnicalTest.Data.Services.Readings
 			return addMeterReadingResult;
 		}
 
-		private IEnumerable<MeterReading> GetReadingsWithAccounts(IEnumerable<MeterReading> meterReadings, AddMeterReadingResult addMeterReadingResult)
+		private IEnumerable<MeterReading> GetReadingsWithExistingAccounts(IEnumerable<MeterReading> meterReadings, AddMeterReadingResult addMeterReadingResult)
 		{
 			var accounts = this.accountRepository.GetAll();
 			var readingsWithAccounts = meterReadings

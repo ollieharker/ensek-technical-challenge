@@ -2,7 +2,7 @@
 
 namespace Ensek.TechnicalTest.Data.Services.Readings
 {
-	public interface IMeterReadingService
+	public interface IMeterReadingDataService
 	{
 		AddMeterReadingResult AddMeterReadings(IEnumerable<MeterReading> meterReadings);
 	}
