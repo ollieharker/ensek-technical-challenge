@@ -1,0 +1,26 @@
+﻿{
+  "ParseFailedCount": 4,
+  "NewMeterReadings": [
+    {
+      "Id": 0,
+      "Account": null,
+      "AccountId": 1,
+      "DateTime": "2019-04-22T09:24:00+01:00",
+      "Value": 343
+    },
+    {
+      "Id": 0,
+      "Account": null,
+      "AccountId": 1000,
+      "DateTime": "2019-04-22T09:24:00+01:00",
+      "Value": 5322
+    },
+    {
+      "Id": 0,
+      "Account": null,
+      "AccountId": -1,
+      "DateTime": "2019-04-22T09:24:00+01:00",
+      "Value": 3
+    }
+  ]
+}

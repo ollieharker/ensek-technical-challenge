@@ -1,0 +1,4 @@
+﻿{
+  "ParseFailedCount": 4,
+  "NewMeterReadings": []
+}
