@@ -4,6 +4,7 @@ using Ensek.TechnicalTest.Db.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ensek.TechnicalTest.Db.Migrations
 {
     [DbContext(typeof(EnsekDbContext))]
-    partial class EnsekDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220916120016_Reading-Alternative-Key")]
+    partial class ReadingAlternativeKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace Ensek.TechnicalTest.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Accounts", (string)null);
+                    b.ToTable("Accounts");
 
                     b.HasData(
                         new
@@ -227,7 +229,7 @@ namespace Ensek.TechnicalTest.Db.Migrations
                     b.HasIndex("AccountId", "Value")
                         .IsUnique();
 
-                    b.ToTable("MeterReadings", (string)null);
+                    b.ToTable("MeterReadings");
                 });
 
             modelBuilder.Entity("Ensek.TechnicalTest.Db.Models.MeterReading", b =>

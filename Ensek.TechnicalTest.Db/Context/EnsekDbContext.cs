@@ -1,7 +1,6 @@
 ﻿using Ensek.TechnicalTest.Db.Models;
 using Ensek.TechnicalTest.Db.Seeding;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace Ensek.TechnicalTest.Db.Context
 {
@@ -22,10 +21,17 @@ namespace Ensek.TechnicalTest.Db.Context
             modelBuilder.Entity<Account>()
                 .HasKey(x => x.Id);
 
+            modelBuilder.Entity<Account>()
+                .HasMany(m => m.Readings);
+
             AccountEntitySeeder.SeedData(modelBuilder);
 
             modelBuilder.Entity<MeterReading>()
                 .HasKey(x => x.Id);
+
+            modelBuilder.Entity<MeterReading>()
+                .HasIndex(m => new { m.AccountId, m.Value })
+                .IsUnique();
 
             modelBuilder.Entity<MeterReading>()
                 .HasOne(x => x.Account);

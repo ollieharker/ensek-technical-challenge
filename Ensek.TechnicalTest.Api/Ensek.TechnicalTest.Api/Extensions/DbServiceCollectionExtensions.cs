@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ensek.TechnicalTest.Api.Extensions
 {
-    public static class ServiceCollectionExtensions
+    public static class DbServiceCollectionExtensions
     {
         private static string EnsekDbConnectionStringApiKey = "EnsekApiDb";
         private static string EnsekDbMigrationsAssembly = "Ensek.TechnicalTest.Db";

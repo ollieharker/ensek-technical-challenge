@@ -15,7 +15,8 @@ namespace Ensek.TechnicalTest.Api
 
             builder.Services
                 .AddSwaggerGen()
-                .AddEnsekDbSqlServer(builder.Configuration);
+                .AddEnsekDbSqlServer(builder.Configuration)
+                .AddMeterReadCsvParsingServices();
 
             var app = builder.Build();
 

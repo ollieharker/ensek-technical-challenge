@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Ensek.TechnicalTest.BusinessLogic\Ensek.TechnicalTest.Data.csproj" />
     <ProjectReference Include="..\..\Ensek.TechnicalTest.Db\Ensek.TechnicalTest.Db.csproj" />
   </ItemGroup>
 

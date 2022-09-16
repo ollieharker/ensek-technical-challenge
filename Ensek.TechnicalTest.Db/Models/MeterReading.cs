@@ -4,7 +4,9 @@
     {
         public int Id { get; set; }
 
-        public Account? Account { get; set; } 
+        public Account Account { get; set; } 
+
+        public int AccountId { get; set; }
 
         public DateTimeOffset DateTime { get; set; }
 

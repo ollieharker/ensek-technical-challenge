@@ -8,9 +8,9 @@ namespace Ensek.TechnicalTest.Db.Seeding
 	{
 		public AccountCsvMap()
 		{
-			Map(m => m.Id).Name("AccountId");
-			Map(m => m.FirstName).Name("FirstName");
-			Map(m => m.LastName).Name("LastName");
+			this.Map(model => model.Id).Name("AccountId");
+			this.Map(model => model.FirstName).Name("FirstName");
+			this.Map(model => model.LastName).Name("LastName");
 		}
 	}
 }
