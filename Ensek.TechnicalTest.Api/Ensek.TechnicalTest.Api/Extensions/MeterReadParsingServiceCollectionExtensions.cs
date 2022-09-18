@@ -9,7 +9,7 @@ namespace Ensek.TechnicalTest.Api.Extensions
 		{
 			return services
 				.AddScoped<IMeterReadCsvUploadService, MeterReadCsvUploadService>()
-				.AddScoped<IMeterReadCsvParser, MeterReadCsvParser>()
+				.AddScoped<IMeterReadCsvParser, CsvHelperMeterReadCsvParser>()
 				.AddMeterReadingDataServices();
 		}
 	}

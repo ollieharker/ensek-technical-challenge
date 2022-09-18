@@ -11,11 +11,11 @@ namespace Ensek.TechnicalTest.Api.Tests.Services.MeterReads
 	[UseReporter(typeof(DiffReporter))]
 	public class MeterReadCsvParserTests
 	{
-		private MeterReadCsvParser sut;
+		private CsvHelperMeterReadCsvParser sut;
 
 		public MeterReadCsvParserTests()
 		{
-			this.sut = new MeterReadCsvParser();
+			this.sut = new CsvHelperMeterReadCsvParser();
 		}
 
 		[Fact]
