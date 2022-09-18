@@ -5,7 +5,6 @@
 //----------------------
 
 using Ensek.TechnicalTest.Api.Client.Contracts;
-using Microsoft.AspNetCore.Http;
 
 #pragma warning disable 108 // Disable "CS0108 '{derivedDto}.ToJson()' hides inherited member '{dtoBase}.ToJson()'. Use the new keyword if hiding was intended."
 #pragma warning disable 114 // Disable "CS0114 '{derivedDto}.RaisePropertyChanged(String)' hides inherited member 'dtoBase.RaisePropertyChanged(String)'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
@@ -29,7 +28,7 @@ namespace Ensek.TechnicalTest.Api.Client
 
         public EnsekApiClient(System.Net.Http.HttpClient httpClient)
         {
-            BaseUrl = httpClient.BaseAddress.ToString();
+            httpClient.BaseAddress.ToString();
             _httpClient = httpClient;
             _settings = new System.Lazy<System.Text.Json.JsonSerializerOptions>(CreateSerializerSettings);
         }
@@ -57,7 +56,7 @@ namespace Ensek.TechnicalTest.Api.Client
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<MeterReadingUploadResult> MeterReadingUploadsAsync(FileParameter csvFile)
+        public virtual System.Threading.Tasks.Task<MeterReadingUploadResponse> MeterReadingUploadsAsync(FileParameter csvFile)
         {
             return MeterReadingUploadsAsync(csvFile, System.Threading.CancellationToken.None);
         }
@@ -65,7 +64,7 @@ namespace Ensek.TechnicalTest.Api.Client
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<MeterReadingUploadResult> MeterReadingUploadsAsync(FileParameter csvFile, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<MeterReadingUploadResponse> MeterReadingUploadsAsync(FileParameter csvFile, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/meter-reading-uploads");
@@ -117,7 +116,7 @@ namespace Ensek.TechnicalTest.Api.Client
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<MeterReadingUploadResult>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<MeterReadingUploadResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);

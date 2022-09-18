@@ -15,7 +15,6 @@
 
 namespace Ensek.TechnicalTest.Api.Client.Contracts
 {
-    using Microsoft.AspNetCore.Http;
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v13.0.0.0))")]
@@ -23,12 +22,33 @@ namespace Ensek.TechnicalTest.Api.Client.Contracts
     {
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<MeterReadingUploadResult> MeterReadingUploadsAsync(FileParameter csvFile);
+        System.Threading.Tasks.Task<MeterReadingUploadResponse> MeterReadingUploadsAsync(FileParameter csvFile);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<MeterReadingUploadResult> MeterReadingUploadsAsync(FileParameter csvFile, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<MeterReadingUploadResponse> MeterReadingUploadsAsync(FileParameter csvFile, System.Threading.CancellationToken cancellationToken);
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class MeterReadingUploadResponse
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("success")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public bool Success { get; set; }
+
+        [System.Text.Json.Serialization.JsonPropertyName("error")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public string Error { get; set; }
+
+        [System.Text.Json.Serialization.JsonPropertyName("result")]
+
+        [System.Text.Json.Serialization.JsonIgnore(Condition = System.Text.Json.Serialization.JsonIgnoreCondition.Never)]   
+        public MeterReadingUploadResult Result { get; set; }
 
     }
 
