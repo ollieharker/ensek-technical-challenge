@@ -7,8 +7,14 @@ using Ensek.TechnicalTest.Api.Exceptions;
 
 namespace Ensek.TechnicalTest.Api.Services.MeterReads
 {
-	public class MeterReadCsvParser : IMeterReadCsvParser
+	public class CsvHelperMeterReadCsvParser : IMeterReadCsvParser
 	{
+		/// <summary>
+		/// Parses the provided CSV file using the <see cref="CsvHelper"/> parser.
+		/// </summary>
+		/// <param name="stream">Stream containin CSV records, see <see cref="NewMeterReadingDto"/> for expected fields.</param>
+		/// <returns>The result <see cref="MeterReadParsingResult"/> of the parsing process.</returns>
+		/// <exception cref="ArgumentNullException">Thrown if the provided <see cref="Stream"/> is null.</exception>
 		public MeterReadParsingResult ParseCsvToMeterReadings(Stream stream)
 		{
 			if (stream == null)
