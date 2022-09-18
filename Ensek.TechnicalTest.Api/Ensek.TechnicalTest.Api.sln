@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensek.TechnicalTest.Api.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ensek.TechnicalTest.Data.Tests", "..\Ensek.TechnicalTest.Data.Tests\Ensek.TechnicalTest.Data.Tests.csproj", "{22081DE5-C1BC-4A94-AAD4-D4A1DC5B5C4F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ensek.TechnicalTest.UI", "Ensek.TechnicalTest.UI\Ensek.TechnicalTest.UI.csproj", "{DAFDE011-BCCB-4C3F-812A-F80EB193A0AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{22081DE5-C1BC-4A94-AAD4-D4A1DC5B5C4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22081DE5-C1BC-4A94-AAD4-D4A1DC5B5C4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22081DE5-C1BC-4A94-AAD4-D4A1DC5B5C4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFDE011-BCCB-4C3F-812A-F80EB193A0AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFDE011-BCCB-4C3F-812A-F80EB193A0AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFDE011-BCCB-4C3F-812A-F80EB193A0AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFDE011-BCCB-4C3F-812A-F80EB193A0AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
