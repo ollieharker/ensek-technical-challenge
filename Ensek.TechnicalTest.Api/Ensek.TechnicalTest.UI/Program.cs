@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+builder.Services.AddHttpClient<IEnsekApiClient, EnsekApiClient>(client => client.BaseAddress = new System.Uri(builder.Configuration.GetSection("EnsekApi").Value));
 
 var app = builder.Build();
 
