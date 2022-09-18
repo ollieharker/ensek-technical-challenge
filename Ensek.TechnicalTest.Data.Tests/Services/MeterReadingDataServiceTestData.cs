@@ -10,9 +10,9 @@ namespace Ensek.TechnicalTest.Data.Tests.Services
 		{
 			var accounts = new List<Account>()
 			{
-				new Account(){Id = 1, FirstName = "Account", LastName = "One" },
-				new Account(){Id = 2, FirstName = "Account", LastName = "One" },
-				new Account(){Id = 3, FirstName = "Account", LastName = "One" }
+				new Account(){Id = 1, FirstName = "Account", LastName = "One", Readings = new List<MeterReading>() },
+				new Account(){Id = 2, FirstName = "Account", LastName = "One", Readings = new List<MeterReading>() },
+				new Account(){Id = 3, FirstName = "Account", LastName = "One", Readings = new List<MeterReading>() }
 			};
 
 			var meterReadingsWithAccounts = new List<MeterReading>()
