@@ -21,6 +21,9 @@ namespace Ensek.TechnicalTest.UI.Pages
 		[BindProperty]
 		public MeterReadingUploadResult? MeterReadingUploadResult { get; set; }
 
+		[BindProperty]
+		public string? MeterReadingUploadResultFailure { get; set; }
+
 
 		private readonly IEnsekApiClient ensekApiClient;
 		private readonly ILogger<IndexModel> _logger;
@@ -47,14 +50,14 @@ namespace Ensek.TechnicalTest.UI.Pages
 					}
 					else
 					{
-						ViewData[UploadErrorViewDataKey] = apiResult.Error;
+						this.MeterReadingUploadResultFailure = apiResult.Error;
 					}
 
 				}
 				catch (Exception exception)
 				{
 					_logger.LogError(exception, "Unknown error occured uploading meter reads.");
-					ViewData[UploadErrorViewDataKey] = "Unknown error occured uploading meter reads.";
+					this.MeterReadingUploadResultFailure = "Unknown error occured uploading meter reads.";
 				}
 			}
 		}

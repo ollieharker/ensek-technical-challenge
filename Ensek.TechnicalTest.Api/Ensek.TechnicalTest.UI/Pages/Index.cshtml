@@ -4,16 +4,30 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="container-fluid ps-md-0">
-    <div class="row g-0">
-        <div class="d-none d-md-flex col-md-4 col-lg-6">
-            <form method="post" class="text-center" enctype="multipart/form-data">
-                <small class="text-muted">Browse or drag your files here...</small>
-                <input type="file" asp-for="MeterReadingsFile" class="form-control" id="meterReadingsFileUpload" accept=".csv" />
-                <input type="submit" class="btn btn-primary form-control" id="submitMeterReadings" value="Submit"/>
-            </form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row text-center">
+                <h4>Upload Meter Reading CSV</h4>
+                <form method="post" class="text-center" enctype="multipart/form-data" id="uploadMeterReads">
+                    <small class="form-text text-muted">Browse or drag your .CSV file here...</small>
+                    <input type="file" asp-for="MeterReadingsFile" class="form-control" id="meterReadingsFileUpload" accept=".csv" />
+                    <input type="submit" class="btn btn-primary form-control" id="submitMeterReadings" value="Submit" />
+                </form>
+                <partial name="_MeterUploadErrorPartial" model="@Model.MeterReadingUploadResultFailure" />
+            </div>
         </div>
-        <partial name="_ViewDataErrorPartial" model="IndexModel.UploadErrorViewDataKey" />
-        <partial name="_MeterUploadSuccessPartial" model="@Model.MeterReadingUploadResult"/>
+        <div class="col-md-6">
+            <div class="row text-center">
+                <h4>Results</h4>
+                <small class="form-text text-muted">Your upload results will appear here...</small>
+                <div class="row mt-4">
+                    <partial name="_MeterUploadSuccessPartial" model="@Model.MeterReadingUploadResult" />
+                    <div class="d-flex mt-3 justify-content-center d-none" id="uploadResultsSpinner">
+                        <div class="spinner-border" role="status" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
