@@ -10,9 +10,9 @@ namespace Ensek.TechnicalTest.Api.Tests.Extensions
 	{
 		public static IEnumerable<object[]> NewMeterReadingDtoTestData()
 		{
-			yield return new object[] { new MeterReading() { DateTime = DateTimeOffset.UtcNow, AccountId = 1234, Value = 632}};
-			yield return new object[] { new MeterReading() { DateTime = DateTimeOffset.UtcNow.AddDays(-5), AccountId = 4321, Value = 1000 } };
-			yield return new object[] { new MeterReading() { DateTime = DateTimeOffset.UtcNow.AddDays(365), AccountId = 1, Value = 7 } };
+			yield return new object[] { new NewMeterReadingDto() { DateTime = DateTimeOffset.UtcNow, AccountId = 1234, Value = 632}};
+			yield return new object[] { new NewMeterReadingDto() { DateTime = DateTimeOffset.UtcNow.AddDays(-5), AccountId = 4321, Value = 1000 } };
+			yield return new object[] { new NewMeterReadingDto() { DateTime = DateTimeOffset.UtcNow.AddDays(365), AccountId = 1, Value = 7 } };
 		}
 
 		[Theory]

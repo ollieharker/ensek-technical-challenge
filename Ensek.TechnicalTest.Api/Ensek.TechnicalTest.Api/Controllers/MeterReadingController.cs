@@ -1,4 +1,5 @@
 ﻿using Ensek.TechnicalTest.Api.Dto;
+using Ensek.TechnicalTest.Api.Exceptions;
 using Ensek.TechnicalTest.Api.Services.MeterReads;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
@@ -17,9 +18,17 @@ namespace Ensek.TechnicalTest.Api.Controllers
 
         [HttpPost]
         [Route("/meter-reading-uploads")]
-        public MeterReadingUploadResult UploadMeterReads([Required]IFormFile csvFile)
+        public MeterReadingUploadResponse UploadMeterReads([Required]IFormFile csvFile)
         {
-			return this.meterReadUploadService.UploadMeterReadsFromStream(csvFile.OpenReadStream());
+            try
+            {
+				var result = this.meterReadUploadService.UploadMeterReadsFromStream(csvFile.OpenReadStream());
+                return MeterReadingUploadResponse.Successful(result);
+			}
+            catch (MeterReadUploadException ex)
+            {
+				return MeterReadingUploadResponse.Failure(ex.Message);
+			}
 		}
 	}
 }

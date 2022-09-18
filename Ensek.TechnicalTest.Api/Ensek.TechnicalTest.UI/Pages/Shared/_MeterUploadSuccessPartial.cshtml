@@ -1,0 +1,39 @@
+﻿@using Ensek.TechnicalTest.Api.Client.Contracts
+@model MeterReadingUploadResult?
+@if (Model != null)
+{
+    <div class="row">
+        <div class="col-sm-10">
+            <label class="form-label fw-bold">Total Rows Uploaded:</label>
+        </div>
+        <div class="col-sm-2">
+            <span>@Model.TotalUploaded</span>
+        </div>
+    </div>
+    <div class="row text-success">
+        <div class="col-sm-10">
+            <label class="form-label fw-bold">Successfully Saved:</label>
+        </div>
+        <div class="col-sm-2">
+            <span>@Model.UploadsSuccessful</span>
+        </div>
+    </div>
+
+    <div class="row text-danger">
+        <div class="col-sm-10">
+            <label class="form-label fw-bold">Failed to Parse:</label>
+        </div>
+        <div class="col-sm-2">
+            <span>@Model.UploadsFailedToParse</span>
+        </div>
+    </div>
+
+    <div class="row text-danger">
+        <div class="col-sm-10">
+            <label class="form-label fw-bold">Failed to Save:</label>
+        </div>
+        <div class="col-sm-2">
+            <span>@Model.UploadsFailedToSave</span>
+        </div>
+    </div>
+}

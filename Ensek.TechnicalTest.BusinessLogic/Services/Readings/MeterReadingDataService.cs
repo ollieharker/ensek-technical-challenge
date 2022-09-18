@@ -27,7 +27,7 @@ namespace Ensek.TechnicalTest.Data.Services.Readings
 					this.meterReadingRepository.Add(reading);
 					addMeterReadingResult.AddedReadingCount++;
 				}
-				catch(Exception ex)
+				catch(Exception)
 				{
 					addMeterReadingResult.RejectedReadingCount++;
 				}
