@@ -1,2 +1,4 @@
 # ensek-technical-challenge
-Ollie Harker Technical Test for Ensek Lead Developer
+Ollie Harker Technical Test for Ensek Software Developer challenge.
+
+Core
