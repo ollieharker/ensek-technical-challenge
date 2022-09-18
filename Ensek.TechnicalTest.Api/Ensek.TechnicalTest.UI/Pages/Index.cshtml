@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container-fluid ps-md-0">
+    <div class="row g-0">
+        <div class="d-none d-md-flex col-md-4 col-lg-6">
+            <form method="post" class="text-center" enctype="multipart/form-data">
+                <small class="form-label">Browse or drag your files here...</small>
+                <input type="file" asp-for="MeterReadingsFile" class="form-control" id="meterReadingsFileUpload" />
+                <input type="submit" class="btn btn-primary form-control" id="submitMeterReadings" value="Submit"/>
+                <span asp-validation-for="MeterReadingsFile" id="meterReadingsFileUpload" class="" />
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
