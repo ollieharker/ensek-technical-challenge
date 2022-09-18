@@ -12,9 +12,15 @@ namespace Ensek.TechnicalTest.UI.Pages
 {
 	public class IndexModel : PageModel
 	{
+		public const string UploadErrorViewDataKey = "UploadErrorMessage";
+
 		[BindProperty]
 		[Required]
 		public IFormFile MeterReadingsFile { get; set; }
+
+		[BindProperty]
+		public MeterReadingUploadResult? MeterReadingUploadResult { get; set; }
+
 
 		private readonly IEnsekApiClient ensekApiClient;
 		private readonly ILogger<IndexModel> _logger;
@@ -27,24 +33,28 @@ namespace Ensek.TechnicalTest.UI.Pages
 
 		public async Task OnPostAsync()
 		{
+			this.MeterReadingUploadResult = default;
 			if (ModelState.IsValid)
 			{
 				try
 				{
 					var toFileParameter = new FileParameter(this.MeterReadingsFile.OpenReadStream());
-					var result = await this.ensekApiClient.MeterReadingUploadsAsync(toFileParameter);
+					var apiResult = await this.ensekApiClient.MeterReadingUploadsAsync(toFileParameter);
+					
+					if (apiResult.Success)
+					{
+						this.MeterReadingUploadResult = apiResult.Result;
+					}
+					else
+					{
+						ViewData[UploadErrorViewDataKey] = apiResult.Error;
+					}
 
-					_logger.Log(LogLevel.Information, $"TotalUploaded: {result.TotalUploaded}");
-					_logger.Log(LogLevel.Information, $"FailedToParse: {result.UploadsFailedToParse}");
-					_logger.Log(LogLevel.Information, $"FailedToSave: {result.UploadsFailedToSave}");
-					_logger.Log(LogLevel.Information, $"UploadsSuccessfull: {result.UploadsSuccessful}");
-
-					ModelState.AddModelError("UnhandledError", "An error occured performing the requested operation.");
 				}
 				catch (Exception exception)
 				{
-					_logger.LogError(exception, "Uknown error occured uploading meter reads.");
-					ModelState.AddModelError("UnhandledError", "An error occured performing the requested operation.");
+					_logger.LogError(exception, "Unknown error occured uploading meter reads.");
+					ViewData[UploadErrorViewDataKey] = "Unknown error occured uploading meter reads.";
 				}
 			}
 		}

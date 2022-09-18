@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensek.TechnicalTest.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensek.TechnicalTest.Api.Tests", "Ensek.TechnicalTest.Api.Tests\Ensek.TechnicalTest.Api.Tests.csproj", "{D87E8B00-2271-4446-BBC2-A2718A5A129B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ensek.TechnicalTest.Data.Tests", "..\Ensek.TechnicalTest.Data.Tests\Ensek.TechnicalTest.Data.Tests.csproj", "{22081DE5-C1BC-4A94-AAD4-D4A1DC5B5C4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensek.TechnicalTest.Data.Tests", "..\Ensek.TechnicalTest.Data.Tests\Ensek.TechnicalTest.Data.Tests.csproj", "{22081DE5-C1BC-4A94-AAD4-D4A1DC5B5C4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ensek.TechnicalTest.UI", "Ensek.TechnicalTest.UI\Ensek.TechnicalTest.UI.csproj", "{DAFDE011-BCCB-4C3F-812A-F80EB193A0AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ensek.TechnicalTest.UI", "Ensek.TechnicalTest.UI\Ensek.TechnicalTest.UI.csproj", "{DAFDE011-BCCB-4C3F-812A-F80EB193A0AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

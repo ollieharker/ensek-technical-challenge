@@ -1,0 +1,10 @@
+﻿@using Ensek.TechnicalTest.Api.Client.Contracts
+@model MeterReadingUploadResult?
+@if (Model != null)
+{
+    <h3>Meter Reading Upload Results</h3>
+
+    <span>Total Successful : @Model.UploadsSuccessful</span>
+    <span>Failed To Parse: @Model.UploadsFailedToParse</span>
+    <span>Failed To Save: @Model.UploadsFailedToSave</span>
+}

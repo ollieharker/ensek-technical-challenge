@@ -8,14 +8,12 @@
     <div class="row g-0">
         <div class="d-none d-md-flex col-md-4 col-lg-6">
             <form method="post" class="text-center" enctype="multipart/form-data">
-                <small class="form-label">Browse or drag your files here...</small>
-                <input type="file" asp-for="MeterReadingsFile" class="form-control" id="meterReadingsFileUpload" />
+                <small class="text-muted">Browse or drag your files here...</small>
+                <input type="file" asp-for="MeterReadingsFile" class="form-control" id="meterReadingsFileUpload" accept=".csv" />
                 <input type="submit" class="btn btn-primary form-control" id="submitMeterReadings" value="Submit"/>
-                <span asp-validation-for="MeterReadingsFile" id="meterReadingsFileUpload" class="" />
             </form>
         </div>
+        <partial name="_ViewDataErrorPartial" model="IndexModel.UploadErrorViewDataKey" />
+        <partial name="_MeterUploadSuccessPartial" model="@Model.MeterReadingUploadResult"/>
     </div>
 </div>
-@section scripts{
-    <partial name="_ValidationScriptsPartial" />
-}
