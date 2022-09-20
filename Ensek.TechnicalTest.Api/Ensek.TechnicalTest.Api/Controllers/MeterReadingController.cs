@@ -16,6 +16,11 @@ namespace Ensek.TechnicalTest.Api.Controllers
             this.meterReadUploadService = meterReadUploadService;
         }
 
+        /// <summary>
+        /// Upload Meter Reads via CSV.
+        /// </summary>
+        /// <param name="csvFile">The CSV file containing meter reads to process.</param>
+        /// <returns><see cref="MeterReadingUploadResponse"/>, containing the <see cref="MeterReadingUploadResponse.Result"/> upload result.</returns>
         [HttpPost]
         [Route("/meter-reading-uploads")]
         public MeterReadingUploadResponse UploadMeterReads([Required]IFormFile csvFile)

@@ -15,6 +15,13 @@ namespace Ensek.TechnicalTest.Api.Services.MeterReads
 			this.meterReadingService = meterReadingService;
 		}
 
+		/// <summary>
+		/// Upload Meter Readings via the provided .CSV stream.
+		/// </summary>
+		/// <param name="stream">Stream containing the CSV to upload.</param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException">Thrown if the stream provided is null.</exception>
+		/// <exception cref="MeterReadUploadException">Thrown if issues are encountered parsing the file. See inner exception for more details.</exception>
 		public MeterReadingUploadResult UploadMeterReadsFromStream(Stream stream)
 		{
 			if (stream == null)
